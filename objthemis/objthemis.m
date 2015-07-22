@@ -167,6 +167,8 @@
     XCTAssertTrue(keygenRSA);
     TSKeyGen * keygenEC = [[TSKeyGen alloc] initWithAlgorithm:TSKeyGenAsymmetricAlgorithmEC];
     XCTAssertTrue(keygenEC);
+    TSKeyGen * keygenInvalid = [[TSKeyGen alloc] initWithAlgorithm:200];
+    XCTAssertTrue(!keygenInvalid);
 }
 
 
