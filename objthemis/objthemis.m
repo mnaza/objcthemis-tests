@@ -230,7 +230,7 @@
 }
 
 - (void)testSecureMessageSignVerify {
-    NSLog2(@"----------------- %s -----------------", sel_getName(_cmd));
+    NSLog(@"----------------- %s -----------------", sel_getName(_cmd));
     
     // ---------- signing
     
