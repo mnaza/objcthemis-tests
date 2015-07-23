@@ -22,6 +22,6 @@ inhibit_all_warnings!
 target :"objthemis" do
 
   # example should work with head
-  pod 'themis', :git => "https://github.com/mnaza/themis.git"
+  pod 'themis', :git => "https://github.com/cossacklabs/themis.git"
 
 end
