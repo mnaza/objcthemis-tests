@@ -179,7 +179,7 @@
     
   NSString * message = @"- Knock, knock.\n- Who’s there?\n*very long pause...*\n- Java.";
     
-  NSError * themisError;
+  NSError * themisError=NULL;
   NSData * encryptedMessage = [encrypter wrapData:[message dataUsingEncoding:NSUTF8StringEncoding] error:&themisError];
   XCTAssertTrue(!themisError);
   NSData * decryptedMessage = [encrypter unwrapData:encryptedMessage error:&themisError];
