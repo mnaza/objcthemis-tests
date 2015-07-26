@@ -171,7 +171,7 @@
     XCTAssertTrue(!keygenInvalid);
 }
 
-- (void)EncDec:(const char*) priv (const char*) pub{
+- (void)EncDec:(const char*)priv public_key:(const char*)pub{
   NSData *private_key=[[NSData alloc] initWithBytes: priv length:strlen(priv)];
   NSData *public_key=[[NSData alloc] initWithBytes: pub length:strlen(priv)];
 
