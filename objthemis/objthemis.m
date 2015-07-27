@@ -130,7 +130,7 @@
 - (void)testSecureCellImprint {
     NSData * masterKeyData = [self generateMasterKey];
     TSCellContextImprint * contextImprint = [[TSCellContextImprint alloc] initWithKey:NULL];
-    XCTAssertTrue(!cellContextImprint);
+    XCTAssertTrue(!contextImprint);
     contextImprint = [[TSCellContextImprint alloc] initWithKey:masterKeyData];
     XCTAssertTrue(contextImprint);
     
@@ -178,7 +178,7 @@
 - (void)EncDec:(const char*)priv priv_length:(unsigned)priv_length public_key:(const char*)pub pub_length:(unsigned)pub_length{
   NSData *private_key=[[NSData alloc] initWithBytes: priv length:priv_length];
   NSData *public_key=[[NSData alloc] initWithBytes: pub length:pub_length];
-  TSMessage * encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:public_key peerPublicKey:private_key];
+  TSMessage * encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:NULL peerPublicKey:public_key];
   XCTAssertTrue(!encrypter);  
   encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:private_key peerPublicKey:public_key];
   XCTAssertTrue(encrypter);  
