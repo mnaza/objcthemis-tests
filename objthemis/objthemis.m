@@ -42,7 +42,7 @@
     
     NSData * masterKeyData = [self generateMasterKey];
     TSCellSeal * cellSeal = [[TSCellSeal alloc] initWithKey:NULL];
-//    XCTAssertTrue(!cellSeal,"secure cell encrypter (Seal mode) creation error");
+    XCTAssertTrue(!cellSeal,"secure cell encrypter (Seal mode) creation error");
     cellSeal = [[TSCellSeal alloc] initWithKey:masterKeyData];
     XCTAssertTrue(cellSeal,@"secure cell encrypter (Seal mode) creation error");
     NSString * message = @"All your base are belong to us!";
@@ -78,7 +78,9 @@
 - (void)testSecureCellTokenProtectMode {
     
     NSData * masterKeyData = [self generateMasterKey];
-    TSCellToken * cellToken = [[TSCellToken alloc] initWithKey:masterKeyData];
+    TSCellToken * cellToken = [[TSCellToken alloc] initWithKey:NULL];
+    XCTAssertTrue(!cellToken);
+    cellToken = [[TSCellToken alloc] initWithKey:masterKeyData];
     XCTAssertTrue(cellToken);
     
     NSString * message = @"Roses are grey. Violets are grey.";
@@ -127,7 +129,9 @@
 
 - (void)testSecureCellImprint {
     NSData * masterKeyData = [self generateMasterKey];
-    TSCellContextImprint * contextImprint = [[TSCellContextImprint alloc] initWithKey:masterKeyData];
+    TSCellContextImprint * contextImprint = [[TSCellContextImprint alloc] initWithKey:NULL];
+    XCTAssertTrue(!cellContextImprint);
+    contextImprint = [[TSCellContextImprint alloc] initWithKey:masterKeyData];
     XCTAssertTrue(contextImprint);
     
     NSString * message = @"Roses are red. My name is Dave. This poem have no sense";
@@ -174,9 +178,10 @@
 - (void)EncDec:(const char*)priv priv_length:(unsigned)priv_length public_key:(const char*)pub pub_length:(unsigned)pub_length{
   NSData *private_key=[[NSData alloc] initWithBytes: priv length:priv_length];
   NSData *public_key=[[NSData alloc] initWithBytes: pub length:pub_length];
-
-  TSMessage * encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:private_key peerPublicKey:public_key];
-    
+  TSMessage * encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:public_key peerPublicKey:private_key];
+  XCTAssertTrue(!encrypter);  
+  encrypter = [[TSMessage alloc] initInEncryptModeWithPrivateKey:private_key peerPublicKey:public_key];
+  XCTAssertTrue(encrypter);  
   NSString * message = @"- Knock, knock.\n- Who’s there?\n*very long pause...*\n- Java.";
     
   NSError * themisError=NULL;
